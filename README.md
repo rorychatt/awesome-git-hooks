@@ -1,88 +1,152 @@
-# Awesome Git Hooks [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+<h1 align="center">
+  <a href="https://git-scm.com/">
+  <img width="455" src="https://github.com/compscilauren/awesome-git-hooks/blob/master/git-logo.png" alt="Awesome Git Hooks"></a><br>Awesome Git Hooks
+</h1>
 
-> A curated list of awesome [Git hooks](https://git-scm.com/docs/githooks)
+<p align="center">
+  <a href="https://awesome.re"><img src="https://awesome.re/badge-flat2.svg" alt="Awesome Lists"></a>
+  <a href="https://github.com/CompSciLauren/awesome-git-hooks/blob/master/CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs welcome"></a>
+</p>
 
-Git Hooks are scripts that run automatically every time a particular event occurs in a Git repository.
+# Awesome Git Hooks
+
+> :anchor: Easy-to-use Git hooks for automating tasks during Git workflows.
+
+Git hooks are custom scripts you can use to automate tasks which are triggered before or after a Git command is executed. There are two groups of these hooks: client-side and server-side. Client-side hooks are triggered by operations such as committing and merging, while server-side hooks run on network operations such as receiving pushed commits. This repo contains helpful resources as well as a variety of Git hook scripts that can be easily customized to serve different purposes.
+
+:heavy_check_mark: Nothing to install/download
+
+:heavy_check_mark: Code is well-documented
+
+:heavy_check_mark: Grab & go! Copy the code you want to use and paste into your .git/hooks folder
+
+Contributions are _always_ welcome! Please see our [Contribution Guidelines](CONTRIBUTING.md). Also, if you don't find the script you want below, you can [create a new issue](https://github.com/CompSciLauren/awesome-git-hooks/issues/new?assignees=&labels=enhancement&template=new-git-hook-script-request.md&title=) to request it.
 
 ## Contents
-- [Useful Git Hooks scripts](#useful-git-hooks-scripts)
+
+- [Git Hook Scripts](#git-hook-scripts)
+  - [commit-msg](#commit-msg)
+  - [post-checkout](#post-checkout)
+  - [post-update](#post-update)
+  - [pre-commit](#pre-commit)
+  - [prepare-commit-msg](#prepare-commit-msg)
+  - [pre-push](#pre-push)
+  - [pre-rebase](#pre-rebase)
+  - [query-watchman](#query-watchman)
+  - [update](#update)
+- [Quick Start](#quick-start)
 - [Tools](#tools)
-- [Projects](#projects)
-- [Articles](#articles)
-- [Video Tutorials](#video-tutorials)
-- [Support](#support)
+- [Written Guides](#written-guides)
+- [Video Guides](#video-guides)
 
-## Useful Git Hooks scripts
+## Git Hook Scripts
 
-- [pre-commit](https://github.com/aitemr/awesome-git-hooks/tree/master/pre-commit) - This hook is called before obtaining the proposed commit message.
-- [prepare-commit-msg](https://github.com/aitemr/awesome-git-hooks/tree/master/prepare-commit-msg) - Called after receiving the default commit message, just prior to firing up the commit message editor.
-- [pre-receive](https://github.com/aitemr/awesome-git-hooks/tree/master/pre-receive) - This is called on the remote repo just before updating the pushed refs.
-- [commit-msg](https://github.com/aitemr/awesome-git-hooks/tree/master/commit-msg) - Can be used to adjust the message after it has been edited in order to ensure conformity to a standard or to reject based on any criteria.
-- [pre-push](https://github.com/aitemr/awesome-git-hooks/tree/master/pre-push) - Called prior to a push to a remote. In addition to the parameters, additional information, separated by a space is passed in through stdin in the form of `<local ref> <local sha1> <remote ref> <remote sha1>`.
-- [pre-auto-gc](https://github.com/aitemr/awesome-git-hooks/tree/master/pre-auto-gc) - Is used to do some checks before automatically cleaning repos. 
-- [pre-rebase](https://github.com/aitemr/awesome-git-hooks/tree/master/pre-rebase) - Called when rebasing a branch. Mainly used to halt the rebase if it is not desirable.
-- [applypatch-msg](https://github.com/aitemr/awesome-git-hooks/tree/master/applypatch-msg) - Can edit the commit message file and is often used to verify or actively format a patch's message to a project's standards.
-- [post-receive](https://github.com/aitemr/awesome-git-hooks/tree/master/post-receive) - This is run on the remote when pushing after the all refs have been updated. It does not take parameters, but receives info through stdin in the form of `<old-value> <new-value> <ref-name>`. 
-- [post-rewrite](https://github.com/aitemr/awesome-git-hooks/tree/master/post-rewrite) - This is called when git commands are rewriting already committed data.
-- [post-commit](https://github.com/aitemr/awesome-git-hooks/tree/master/post-commit) - Called after a successful commit. Useful for triggering notifications, etc.
+Note: The icon next to each script signifies what language it is written in.
+
+| icon                                                     | language |
+| -------------------------------------------------------- | -------- |
+| <img width="14" src="bash-icon.png" alt="Bash Icon">     | `bash`   |
+| <img width="14" src="python-icon.png" alt="Python Icon"> | `python` |
+| <img width="14" src="perl-icon.png" alt="Perl Icon">     | `perl`   |
+
+### commit-msg
+
+- [enforce-insert-issue-number](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/commit-msg-hooks/enforce-insert-issue-number.hook) - Make sure user did not delete the ISSUE-\[#] string that was generated by prepare-commit-msg/insert-issue-number.hook. <img width="14" src="python-icon.png" alt="Python Icon">
+
+### post-checkout
+
+- [delete-pyc-files](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/post-checkout-hooks/delete-pyc-files.hook) - Delete all .pyc files every time a new branch is checked out. <img width="14" src="python-icon.png" alt="Python Icon">
+- [new-branch-alert](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/post-checkout-hooks/new-branch-alert.hook) - Display a message when a new branch is checked out for the first time. <img width="14" src="bash-icon.png" alt="Bash Icon">
+
+### post-update
+
+- [update-server-info](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/post-update-hooks/update-server-info.hook) - Prepare a packed repository for use over dumb transports (e.g. http). <img width="14" src="bash-icon.png" alt="Bash Icon">
+
+### pre-commit
+
+- [dotenvx](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/pre-commit-hooks/dotenvx.hook) - Prevent committing your `.env` file(s) to code. <img width="14" src="bash-icon.png" alt="Bash Icon">
+- [format-code](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/pre-commit-hooks/format-code.hook) - Run command to format code and re-add any files modified after formatting. <img width="14" src="bash-icon.png" alt="Bash Icon">
+- [search-term](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/pre-commit-hooks/search-term.hook) - Fail commit if a specific term is found in the code. <img width="14" src="bash-icon.png" alt="Bash Icon">
+- [spell-check-md-files](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/pre-commit-hooks/spell-check-md-files.hook) - Check files with .md extension for spelling errors. <img width="14" src="bash-icon.png" alt="Bash Icon">
+- [verify-name-and-email](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/pre-commit-hooks/verify-name-and-email.hook) - Fail commit if user.name or user.email is incorrect. <img width="14" src="bash-icon.png" alt="Bash Icon">
+
+### prepare-commit-msg
+
+- [include-git-diff-name-status](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/prepare-commit-msg-hooks/include-git-diff-name-status.hook) - Include the output of "Git diff --name-status -r" into the message, just before the "Git status" output. <img width="14" src="bash-icon.png" alt="Bash Icon">
+- [insert-issue-number](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/prepare-commit-msg-hooks/insert-issue-number.hook) - Insert issue number to beginning of the commit message. <img width="14" src="python-icon.png" alt="Python Icon">
+
+### pre-push
+
+- [prevent-bad-push](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/pre-push-hooks/prevent-bad-push.hook) - Prevent push of commits where the log message starts with "WIP" (work in progress). <img width="14" src="bash-icon.png" alt="Bash Icon">
+
+### pre-rebase
+
+- [prevent-rebase](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/pre-rebase-hooks/prevent-rebase.hook) - Prevent topic branches that are already merged to 'next' branch from getting rebased, because allowing it would result in rebasing already published history. <img width="14" src="bash-icon.png" alt="Bash Icon">
+
+### query-watchman
+
+- [fsmonitor-watchman](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/query-watchman-hooks/fsmonitor-watchman.hook) - Output to stdout all files that have been modified since a given time. <img width="14" src="perl-icon.png" alt="Perl Icon">
+
+### update
+
+- [update](https://github.com/CompSciLauren/awesome-git-hooks/blob/master/update-hooks/prevent-unannotated-tags.hook) - Block unannotated tags from entering. <img width="14" src="bash-icon.png" alt="Bash Icon">
+
+## Quick Start
+
+1. Pick a hook, any hook! Try the "verify-name-and-email" one if you're not sure where to start.
+2. Navigate to your project's hooks folder (.git/hooks).
+3. You should see a list of files already in there. Create a new file called the exact commit type that you want to use (eg: "commit-msg", "pre-rebase", "pre-commit", etc). Do not give it an extension.
+
+![create new file](create-new-file.gif)
+
+4. Open your new file and paste the code from the hook you chose out of this repo (eg: [verify-name-and-email.hook](https://github.com/CompSciLauren/git-hooks/blob/master/pre-commit-hooks/verify-name-and-email.hook)).
+5. Save file. Done! Now the Git hook will be triggered automatically.
 
 ## Tools
 
-- [Husky](https://github.com/typicode/husky) - Git hooks made easy.
-- [Ivy Tendril](https://github.com/Ivy-Interactive/Ivy-Tendril) - Open-source Git GUI and multi-worktree client with an amazing UI built for parallel agentic workflows, featuring programmatic verifications and review loops.
-- [Komondor](https://github.com/orta/Komondor) - Git Hooks for Swift projects.
-- [Quickhook](https://github.com/dirk/quickhook/) - Faster Git hook (pre-commit, etc.) runner.
-- [overcommit](https://github.com/brigade/overcommit/) - A fully configurable and extendable Git hook manager.
-- [Grunt GitHooks](https://github.com/wecodemore/grunt-githooks) - Setup, manage and update your hooks with Grunt. Can be used with all languages, supports templates.
-- [Autohook](https://github.com/nkantar/Autohook) - A very, very small Git hook manager with focus on automation.
-- [Githooks](https://github.com/rycus86/githooks) - Auto-install Git hook, that supports hooks in any language checked into Git and also shared repos.
-- [Hooks](https://www.npmjs.com/package/node-hooks) - A command line git hook management tool.
-- [Lefthook](https://github.com/Arkweid/lefthook) - Fast and powerful Git hooks manager for any type of projects. 
+- [Husky](https://github.com/typicode/husky) - Manage Git hooks with a nice user interface.
+
+- [Overcommit](https://github.com/sds/overcommit) - A fully configurable and extendable Git hook manager.
+
+- [Git Build Hook Maven Plugin](https://github.com/rudikershaw/git-build-hook) - Install Git hooks and config during a Maven build.
+
+- [CaptainHook](https://github.com/CaptainHookPhp/captainhook) - Git hooks manager for PHP developers.
+
 - [pre-commit](https://github.com/pre-commit/pre-commit) - A framework for managing and maintaining multi-language pre-commit hooks.
-- [GitHooksVS](https://github.com/mstranne/GitHooksVS) - A Visual Studio extension for managing Git hooks.
 
-## Projects 
+- [Ivy Tendril](https://github.com/Ivy-Interactive/Ivy-Tendril) - Open-source Git GUI and multi-worktree client with an amazing UI built for parallel agentic workflows, featuring programmatic verifications and review loops.
+## Written Guides
 
-- [Lolcommits](https://github.com/mroth/lolcommits) - Takes a snapshot with your webcam every time you git commit code, and archives a lolcat style image with it.
-- [Podmena](https://github.com/bmwant/podmena) - Enhance your commit messages adding random emoji to it.
-- [Git::Hooks](https://github.com/gnustavo/Git-Hooks) - A framework for implementing Git (and Gerrit) hooks.
-- [App::GitHooks](https://metacpan.org/pod/App::GitHooks) -  A modular and easy to configure git hooks framework, supporting many plugins. 
-- [Jig](https://pythonhosted.org/jig/) - A pre-commit hook on steroids.
-- [GitPHPHooks](https://github.com/wecodemore/GitPHPHooks) - Write your hooks in PHP, manage and organize them on a task and project level. Has an additional Hooks library on GitHub.
-- [git-hooks-php](https://github.com/BernardoSilva/git-hooks-php) - Git hooks for PHP based projects.
-- [commandbox-githooks](https://github.com/elpete/commandbox-githooks) - Git hooks for CommandBox CFML based projects.
-- [hooks4git](https://pypi.org/project/hooks4git/) - A simple, flexible and language agnostic git hook management approach.
-- [Commit Colors](https://github.com/sparkbox/commit-colors) - See a color swatch in your terminal every time you author a commit.
+- [Git hooks documentation at git-scm.com](https://git-scm.com/docs/githooks)
 
-## Articles
+- [Git Pro book by Scott Chacon and Ben Straub](https://git-scm.com/book/en/v2)
 
-- [Official Documentation](https://git-scm.com/docs/githooks)
-- [Git Hooks (Part I): The Basics](http://omerkatz.com/blog/2013/2/15/git-hooks-part-1-the-basics)
-- [Git Hooks (Part II): Implementing Git Hooks using Python](http://omerkatz.com/blog/2013/5/23/git-hooks-part-2-implementing-git-hooks-using-python)
-- [Atlassian Git Hooks tutorial](https://ru.atlassian.com/git/tutorials/git-hooks)
-- [Tips for using Git pre commit hook](https://codeinthehole.com/tips/tips-for-using-a-git-pre-commit-hook/)
-- [Use a boostrap shell script to use Git Hooks in Mac with PowerShell and with IntelliJ](https://wilsonmar.github.io/git-hooks/)
-- [githooks.com](https://githooks.com)
+- [An Introduction to Git Hooks](https://www.sitepoint.com/introduction-git-hooks/)
+
+- [Atlassian Tutorial on Git Hooks](https://www.atlassian.com/ru/git/tutorials/git-hooks)
+
+- [Easy Git hooks with husky](https://www.vojtechruzicka.com/githooks-husky/)
+
+- [Git Hooked](https://www.javascriptjanuary.com/blog/git-hooked 'Git Hooked')
+
 - [How To Use Git Hooks To Automate Development and Deployment Tasks](https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks)
-- [Automate your workflow with git hooks
-](https://medium.com/backticks-tildes/how-to-automate-your-git-workflow-with-git-hooks-c905296c49bc)
-- [Automate your development workflow](https://medium.com/the-andela-way/git-hooks-beautifully-automate-tasks-stages-bfb29f42fea1)
-- [Deploying websites with a Git hook](http://ryanflorence.com/deploying-websites-with-a-tiny-git-hook/) 
-- [The missing Git hooks documentation](https://longair.net/blog/2011/04/09/missing-git-hooks-documentation/)
 
-## Video Tutorials 
+- [Automate Your Workflow with Git Hooks](https://hackernoon.com/automate-your-workflow-with-git-hooks-fef5d9b2a58c)
 
-- [Introduction to Git Hooks](https://www.youtube.com/watch?v=8-JL6NOTZOw)
-- [Git hooks, practical uses (yes, even on Windows)](https://www.youtube.com/watch?v=fMYv6-SZsSo)
-- [Life’s better with Git hooks](https://www.youtube.com/watch?v=RG26-Iozg70)
-- [Husky and the Git Hooks](https://www.youtube.com/watch?v=EpxkBgd8yq8)
+- [Using JavaScript in Your Git Hooks](https://medium.com/@Sergeon/using-javascript-in-your-git-hooks-f0ce09477334 'Using JavaScript in Your Git Hooks')
 
-## Support
+- [An In-Depth Look at Git Hooks](https://dzone.com/articles/an-in-depth-look-at-git-hooks)
 
-If you have a question, find a bug, or just want to say hi, please open an [issue on GitHub](https://github.com/aitemr/awesome-git-hooks/issues/new). If you want to contribute, please read the [guide](./contributing.md).
+- [Git hooks and practical uses. Yes, even on Windows.](https://www.tygertec.com/git-hooks-practical-uses-windows/)
+
+- [Automatically Manage Git Hooks with Direnv](https://knpw.rs/blog/direnv-git-hooks)
+
+## Video Guides
+
+- [Git Hooks Part 1 - Getting Started](https://www.youtube.com/watch?v=aB3eq52sZSU)
+
+- [Git hooks and practical uses. Yes, even on Windows.](http://www.youtube.com/watch?feature=player_embedded&v=fMYv6-SZsSo&t=140s)
 
 ## License
 
-[![CC0](http://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
-
-To the extent possible under law, [Islam Temirbek](https://aitemr.github.io) has waived all copyright and related or neighboring rights to this work.
+[![CC0](http://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg)](https://creativecommons.org/publicdomain/zero/1.0/)<br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/1.0/">Creative Commons Attribution 1.0 International License</a>.
